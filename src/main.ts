@@ -74,7 +74,7 @@ export default class TextProgress extends Plugin {
     renderTransition(): string {
         const transitions = this.transition.split(',')
 
-        let remainder = ((this.done / this.total) * this.length) % 1
+        const remainder = ((this.done / this.total) * this.length) % 1
 
         return transitions[Math.floor(remainder * transitions.length)]
 
@@ -98,7 +98,7 @@ export default class TextProgress extends Plugin {
 
     }
 
-    highlight(strings: TemplateStringsArray, ...values: any[]) {
+    highlight(strings: TemplateStringsArray, ...values: string[]) {
         let str = '<span class="label">'
         strings.forEach((string:string, i:number) => {
             str += string + (values[i] !== undefined ? values[i] : '')
@@ -126,7 +126,7 @@ export default class TextProgress extends Plugin {
 
             // Other rows are settings for the bar.
             // Formatted like "setting:value"
-            let settings:TextProgressSettings = {
+            const settings:TextProgressSettings = {
                 "transition": this.settings.transition,
                 "open": this.settings.open,
                 "close": this.settings.close,
@@ -140,9 +140,9 @@ export default class TextProgress extends Plugin {
             // current settings.
             // We split on the first ':' as there could be ':' in
             // the values.
-            for(let row in rows) {
-                let [first, ...rest] = rows[row].split(':')
-                let restJoined:string = rest.join(":")
+            for(const row in rows) {
+                const [first, ...rest] = rows[row].split(':')
+                const restJoined:string = rest.join(":")
                 settings[first] = restJoined
             }
 
@@ -167,13 +167,12 @@ export default class TextProgress extends Plugin {
             bar.className = "bar"
             bar.innerHTML = this.open
 
-            let complete:number = 0
+            let complete = 0
 
             this.length = this.length > 0 ? this.length : this.total
 
             complete = Math.floor((this.done / this.total) * this.length)
-            let remainder = ((this.done / this.total) * this.length) % 1
-
+            const remainder = ((this.done / this.total) * this.length) % 1
             
             for (let index = 0; index < this.length; index++) {
 
