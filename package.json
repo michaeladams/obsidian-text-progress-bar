@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-text-progress-bar",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"description": "Display low-fi text progress bars for Obsidian (https://obsidian.md)",
 	"main": "main.js",
 	"scripts": {
