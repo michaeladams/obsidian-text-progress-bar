@@ -1,0 +1,32 @@
+.text-progress-bar {
+    padding: 0.5em 0;
+    font-family: monospace;
+    letter-spacing: 0;
+    line-height: 1.2em;
+
+    .label {
+        display: inline-block;
+        padding: 0 1.2em 0 0;
+    }
+
+    .bar {
+        height: 1.2em;
+    
+        .empty,
+        .filled {
+            display: inline-block;
+        }
+
+        &.has-emoji {
+            .empty,
+            .filled {
+                display: inline-block;
+                width: 1.2em;
+                height: 1.2em;
+                text-align:center;
+            }
+        }
+
+    }
+
+}
