@@ -1,32 +1,32 @@
 .text-progress-bar {
+    padding: 0.5em 0;
     font-family: monospace;
-    padding: 10px 0;
-    line-height: 1.2em;
     letter-spacing: 0;
+    line-height: 1.2em;
 
     .label {
-        padding: 0 10px;
         display: inline-block;
+        padding: 0 1.2em 0 0;
     }
 
     .bar {
-        border: 1px solid goldenrod;
         height: 1.2em;
-    }
-
-    span.back,
-    span.fill {
-        display: inline-block;
-    }
-
-    &.has-emoji {
-        span.back,
-        span.fill {
-            width: 1.2em;
-            height: 1.2em;
-            text-align:center;
+    
+        .empty,
+        .filled {
             display: inline-block;
         }
+
+        &.has-emoji {
+            .empty,
+            .filled {
+                display: inline-block;
+                width: 1.2em;
+                height: 1.2em;
+                text-align:center;
+            }
+        }
+
     }
 
 }
