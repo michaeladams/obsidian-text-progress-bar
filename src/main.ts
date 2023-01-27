@@ -45,7 +45,7 @@ export default class TextProgress extends Plugin {
     progressHide: boolean
     progressPosition: string
 
-    parseLabel(label:string): any {
+    parseLabel(label:string) {
 
         const matchResult = label.match(labelRegex)
 

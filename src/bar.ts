@@ -1,7 +1,3 @@
-import { 
-    Notice
-} from 'obsidian'
-
 const emojiRegex = /\p{Emoji}/u
 
 export class ProgressBar {
@@ -27,7 +23,7 @@ export class ProgressBar {
     suffix: string // character suffixing the bar.
     
 
-    labelHide: Boolean
+    labelHide: boolean
 
     constructor(label: string, done: number, total: number) {
         this.label = label
@@ -93,7 +89,7 @@ export class ProgressBar {
         
         for (let index = 0; index < this.length; index++) {
 
-            let bit = bar.createEl("span")
+            const bit = bar.createEl("span")
             
             if (index < complete || complete === this.length) {
                 bit.className = "filled"

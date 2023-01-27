@@ -1,6 +1,3 @@
-
-import * as manifest from '../manifest.json';
-
 import { ProgressBar } from "../src/bar"
 
 
