@@ -116,7 +116,7 @@ export default class TextProgress extends Plugin {
                 bar.fill = settings.fill
                 bar.length = settings.length
                 bar.empty = settings.empty
-                bar.labelHide = settings.labelHide
+                bar.labelHide = String(settings.labelHide).toLowerCase() === "true"
                 
                 const container = el.createEl("section")
                 container.className = "text-progress-bar"
