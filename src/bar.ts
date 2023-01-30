@@ -71,10 +71,26 @@ export class ProgressBar {
         return Math.min(Math.floor((this.done / this.total) * this.length), this.length)
     }
 
+    /**
+     * 
+     * Renders the output of the bar.
+     * 
+     * @param container HTML Element which will contain the bar.
+     * @returns An HTML element of the bar.
+     */
     renderBar(container: HTMLElement): HTMLElement {
-        // Render the output of the bar.
-        container.innerHTML = this.labelHide ? '' : `<span class="label">${this.label}</span>`
         
+        // Add a text label in front of the bar.
+        if (!this.labelHide) {
+            container.createEl(
+                "span",
+                {
+                    text: this.label,
+                    cls: "label"
+                }
+            )
+        }
+
         const bar = document.createElement("span")
         bar.className = "bar"
 
@@ -82,10 +98,9 @@ export class ProgressBar {
             bar.className += " has-emoji"
         }
 
-        bar.innerHTML = this.prefix
+        bar.innerText = this.prefix
 
-        let complete = 0
-        complete = this.getDoneParts()
+        const complete = this.getDoneParts()
         
         for (let index = 0; index < this.length; index++) {
 
@@ -93,15 +108,15 @@ export class ProgressBar {
             
             if (index < complete || complete === this.length) {
                 bit.className = "filled"
-                bit.innerHTML = this.fill
+                bit.innerText = this.fill
             } else {
                 bit.className = "empty"
-                bit.innerHTML = (complete === index && this.getRemainder()) ? this.renderTransition(): this.empty
+                bit.innerText = (complete === index && this.getRemainder()) ? this.renderTransition(): this.empty
             }
 
         }
 
-        bar.innerHTML += this.suffix
+        bar.innerText += this.suffix
 
         return bar
     }
