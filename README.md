@@ -28,7 +28,7 @@ Optionally, all the settings can be specified:
 Books read:5/10
 transition:|
 fill:▓
-empty:&#x2007;
+empty: 
 prefix:[
 suffix:]
 length:10
@@ -37,7 +37,7 @@ length:10
 
 ![Default example](images/example-all-settings.jpg)
 
-Note that ```&#x2007;``` represents an empty character.
+Note that empty has "` `" - a special empty character.
 
 Want emojis?  We got em:
 
