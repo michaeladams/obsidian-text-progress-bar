@@ -6,7 +6,7 @@ on:
       - "*"
 
 env:
-  PLUGIN_NAME: obsidian-text-progress-bar
+  PLUGIN_NAME: text-progress-bar
 
 jobs:
   build:
