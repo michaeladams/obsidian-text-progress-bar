@@ -1,6 +1,6 @@
 {
 	"id": "text-progress-bar",
-	"name": "Text progress bar",
+	"name": "Text Progress Bar",
 	"version": "0.1.0",
 	"minAppVersion": "0.15.0",
 	"description": "Display low-fi text progress bars in your notes.",
