@@ -18,6 +18,18 @@ describe("Calculates progress", () => {
 
   })
 
+  it("when progress is partial", () => {
+
+    const pb = new ProgressBar('Books read', 0, 10)
+
+    pb.done = 5.5
+    expect(pb.getDonePercent()).toBeCloseTo(55)
+
+    pb.done = 10.5
+    expect(pb.getDonePercent()).toBeCloseTo(105)
+
+  })
+
   it("when it calculates how many filled parts to show", () => {
 
     const pb = new ProgressBar('Books read', 0, 15)
