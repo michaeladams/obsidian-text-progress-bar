@@ -98,7 +98,8 @@ export class ProgressBar {
             bar.className += " has-emoji"
         }
 
-        bar.innerText = this.prefix
+        const prefix = bar.createEl("span")
+        prefix.innerText = this.prefix
 
         const complete = this.getDoneParts()
         
@@ -116,7 +117,8 @@ export class ProgressBar {
 
         }
 
-        bar.innerText += this.suffix
+        const suffix = bar.createEl("span")
+        suffix.innerText = this.suffix
 
         return bar
     }

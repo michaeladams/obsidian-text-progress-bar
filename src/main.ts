@@ -11,7 +11,7 @@ import {
 } from 'obsidian'
 
 
-const labelRegex = /(?<label>.+):\s*(?<done>\d+)\/(?<total>\d+)/
+const labelRegex = /(?<label>.+):\s*(?<done>(\d+\.?\d*|\d*\.?\d+))\/(?<total>(\d+\.?\d*|\d*\.?\d+))/
 
 interface ObjectKeys {
     [key: string]: string | number | boolean
