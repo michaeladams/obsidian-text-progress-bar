@@ -70,6 +70,18 @@ length:3
 
 ![Default example](images/example-transition-emoji.jpg)
 
+And use decimal numbers to specify the partial completion of emojis
+
+~~~
+```text-progress-bar
+Books read:5.5/10
+transition:📖
+fill:📗
+empty:📕
+length:10
+```
+~~~
+
 Or use ASCII characters for the transition:
 ~~~
 ```text-progress-bar
