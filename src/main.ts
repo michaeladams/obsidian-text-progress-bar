@@ -99,43 +99,38 @@ export default class TextProgress extends Plugin {
 
             // First row should be label/progress/done.
             // Not always with multiple bars.
-            const labels = []
+            let labels = []
 
             // Get all labels that match regex.
             for(const row in rows) {
-                if (this.parseLabel(rows[row])) {
-                    labels.push(rows[row])
+                let label
+                if (label = this.parseLabel(rows[row])) {
+                    labels.push(label)
                 }
             }
-
-            // TODO: Move label format check here.
 
             if (labels.length) {
                 const container = el.createEl("section")
                 container.className = "text-progress-bar"
 
-                for (const label in labels) {
-                    const parsedLabel = this.parseLabel(labels[label])
-                    if (!parsedLabel) {
-                        new Notice('Could not find label in correct format.')
-                        continue
+                for (const parsedLabel of labels) {
+                    const wrapper = container.createEl("div")
+
+                    if (typeof parsedLabel !== 'boolean') {
+                        const bar = new ProgressBar(parsedLabel.label, parsedLabel.done, parsedLabel.total)
+
+                        const settings = this.parseSource(rows)
+
+                        bar.transition = settings.transition
+                        bar.prefix = settings.prefix
+                        bar.suffix = settings.suffix
+                        bar.fill = settings.fill
+                        bar.length = settings.length
+                        bar.empty = settings.empty
+                        bar.labelHide = String(settings.labelHide).toLowerCase() === "true"
+
+                        wrapper.appendChild(bar.renderBar(wrapper))
                     }
-
-                    const bar = new ProgressBar(parsedLabel.label, parsedLabel.done, parsedLabel.total)
-
-                    const settings = this.parseSource(rows)
-
-                    bar.transition = settings.transition
-                    bar.prefix = settings.prefix
-                    bar.suffix = settings.suffix
-                    bar.fill = settings.fill
-                    bar.length = settings.length
-                    bar.empty = settings.empty
-                    bar.labelHide = String(settings.labelHide).toLowerCase() === "true"
-
-                    // TODO: Add in extra wrapper for each progress bar.
-
-                    container.appendChild(bar.renderBar(container))
                 }
 
             } else {
