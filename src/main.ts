@@ -99,12 +99,12 @@ export default class TextProgress extends Plugin {
 
             // First row should be label/progress/done.
             // Not always with multiple bars.
-            let labels = []
+            const labels = []
 
             // Get all labels that match regex.
             for(const row in rows) {
-                let label
-                if (label = this.parseLabel(rows[row])) {
+                const label = this.parseLabel(rows[row])
+                if (label) {
                     labels.push(label)
                 }
             }
