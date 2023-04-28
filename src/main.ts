@@ -60,7 +60,7 @@ export default class TextProgress extends Plugin {
             }
         }
 
-        return {'label': '', 'done':0, 'total':0}
+        return false
 
     }
 
@@ -97,31 +97,39 @@ export default class TextProgress extends Plugin {
 
             const rows = source.trim().split("\n")
 
-            // First row should be label/progress/done.
-            const label = rows.shift()
+            const labels = []
 
-            if (label !== undefined) {
-                const parsedLabel = this.parseLabel(label)
-                if (!parsedLabel) {
-                    new Notice('Could not find label in correct format.')
+            // Get all labels that match regex.
+            for(const row in rows) {
+                const label = this.parseLabel(rows[row])
+                if (label) {
+                    labels.push(label)
                 }
+            }
 
-                const bar = new ProgressBar(parsedLabel.label, parsedLabel.done, parsedLabel.total)
-
-                const settings = this.parseSource(rows)
-
-                bar.transition = settings.transition
-                bar.prefix = settings.prefix
-                bar.suffix = settings.suffix
-                bar.fill = settings.fill
-                bar.length = settings.length
-                bar.empty = settings.empty
-                bar.labelHide = String(settings.labelHide).toLowerCase() === "true"
-                
+            if (labels.length) {
                 const container = el.createEl("section")
                 container.className = "text-progress-bar"
 
-                container.appendChild(bar.renderBar(container))
+                for (const parsedLabel of labels) {
+                    const wrapper = container.createEl("div")
+
+                    if (typeof parsedLabel !== 'boolean') {
+                        const bar = new ProgressBar(parsedLabel.label, parsedLabel.done, parsedLabel.total)
+
+                        const settings = this.parseSource(rows)
+
+                        bar.transition = settings.transition
+                        bar.prefix = settings.prefix
+                        bar.suffix = settings.suffix
+                        bar.fill = settings.fill
+                        bar.length = settings.length
+                        bar.empty = settings.empty
+                        bar.labelHide = String(settings.labelHide).toLowerCase() === "true"
+
+                        wrapper.appendChild(bar.renderBar(wrapper))
+                    }
+                }
 
             } else {
                 new Notice('No progress bars found.')
