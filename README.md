@@ -95,7 +95,24 @@ length:3
 ```
 ~~~
 
-![Default example](images/example-transition-ascii.jpg)
+![ASCII Transition](images/example-transition-ascii.jpg)
+
+### Multiple progress bars.
+
+Progress bars can be grouped together in one block using multiple labels.
+~~~
+```text-progress-bar
+JAN:10.0/10
+FEB:1.0/10
+MAR:5.5/10
+transition:📖
+fill:📗
+empty:📕
+length:10
+```
+~~~
+
+![Grouped progress](images/example-multiple.png)
 
 ## Installation
 
