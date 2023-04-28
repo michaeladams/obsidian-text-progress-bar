@@ -97,8 +97,6 @@ export default class TextProgress extends Plugin {
 
             const rows = source.trim().split("\n")
 
-            // First row should be label/progress/done.
-            // Not always with multiple bars.
             const labels = []
 
             // Get all labels that match regex.
